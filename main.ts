@@ -56,7 +56,9 @@ class MyStack extends TerraformStack {
       },
     })
 
-    this.addOverride("terraform.backend.kubernetes", {})
+    this.addOverride("terraform.backend.kubernetes", {
+      "secret_suffix": "state",
+    })
     this.addOverride("terraform.backend.local", null)
   }
 }
