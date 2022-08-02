@@ -9,7 +9,11 @@
   },
   "provider": {
     "helm": [
-      {}
+      {
+        "registry_config_path": "/tmp/.config/helm/registry/config.json",
+        "repository_cache": "/tmp/.cache/helm/repository",
+        "repository_config_path": "/tmp/.config/helm/repositories.yaml"
+      }
     ],
     "kubernetes": [
       {}

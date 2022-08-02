@@ -12,6 +12,9 @@ export class AppStack extends TerraformStack {
 	new kubernetes.KubernetesProvider(this, 'k8s', {
 	})
 	new helm.HelmProvider(this, 'helm', {
+	  registryConfigPath: "/tmp/.config/helm/registry/config.json",
+      repositoryCache: "/tmp/.cache/helm/repository",
+      repositoryConfigPath: "/tmp/.config/helm/repositories.yaml",
 	})
 
 	new kubernetes.Deployment(this, 'deployment_myapp', {
