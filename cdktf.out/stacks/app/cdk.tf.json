@@ -81,12 +81,7 @@
     }
   },
   "terraform": {
-    "backend": {
-      "kubernetes": {
-        "secret_suffix": "state"
-      },
-      "local": null
-    },
+    "backend": null,
     "required_providers": {
       "kubernetes": {
         "source": "kubernetes",
