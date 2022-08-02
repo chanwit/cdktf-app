@@ -5,16 +5,11 @@ import * as kubernetes from "@cdktf/provider-kubernetes"
 
 
 class MyStack extends TerraformStack {
+
   constructor(scope: Construct, name: string) {
     super(scope, name);
     
-    new kubernetes.KubernetesProvider(this, 'in_cluster', {
-    })
-
-    new kubernetes.Namespace(this, 'namespace_dev', {
-      metadata: {
-        name: 'dev',
-      }
+    new kubernetes.KubernetesProvider(this, 'k8s', {
     })
 
     new kubernetes.Deployment(this, 'deployment_myapp', {
@@ -56,7 +51,6 @@ class MyStack extends TerraformStack {
       },
     })
 
-    this.addOverride("terraform.backend.local", null)
   }
 }
 

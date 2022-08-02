@@ -2,21 +2,14 @@
   "//": {
     "metadata": {
       "backend": "local",
-      "overrides": {
-        "stack": [
-          "terraform"
-        ]
-      },
       "stackName": "app",
       "version": "0.12.0"
     },
-    "outputs": {
-    }
+    "outputs": {}
   },
   "provider": {
     "kubernetes": [
-      {
-      }
+      {}
     ]
   },
   "resource": {
