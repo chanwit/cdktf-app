@@ -24,7 +24,7 @@ class MyStack extends TerraformStack {
         namespace: 'dev',
       },
       spec: {
-        replicas: '1',
+        replicas: '2',
         selector: {
           matchLabels: {
             app: 'myapp',
