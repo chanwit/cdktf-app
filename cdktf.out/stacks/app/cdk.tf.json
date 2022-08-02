@@ -58,6 +58,57 @@
           }
         }
       }
+    },
+    "kubernetes_manifest": {
+      "app_tf": {
+        "//": {
+          "metadata": {
+            "path": "app/app_tf",
+            "uniqueId": "app_tf"
+          }
+        },
+        "manifest": {
+          "apiVersion": "infra.contrib.fluxcd.io/v1alpha1",
+          "kind": "Terraform",
+          "metadata": {
+            "name": "app-tf",
+            "namespace": "dev"
+          },
+          "spec": {
+            "approvePlan": "auto",
+            "interval": "1m",
+            "path": "./cdktf.out/stacks/app/",
+            "sourceRef": {
+              "kind": "GitRepository",
+              "name": "cdktf-app",
+              "namespace": "dev"
+            }
+          }
+        }
+      },
+      "cdktf_app": {
+        "//": {
+          "metadata": {
+            "path": "app/cdktf_app",
+            "uniqueId": "cdktf_app"
+          }
+        },
+        "manifest": {
+          "apiVersion": "source.toolkit.fluxcd.io/v1beta2",
+          "kind": "GitRepository",
+          "metadata": {
+            "name": "cdktf-app",
+            "namespace": "dev"
+          },
+          "spec": {
+            "interval": "30s",
+            "ref": {
+              "branch": "main"
+            },
+            "url": "https://github.com/chanwit/cdktf-app"
+          }
+        }
+      }
     }
   },
   "terraform": {
