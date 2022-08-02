@@ -17,9 +17,9 @@ metadata:
   namespace: dev
 spec:
   path: ./cdktf.out/stacks/app/
-  approvePlan: "plan-main-6af10648d3"
+  approvePlan: "auto"
   interval: 1m
   sourceRef:
     kind: GitRepository
     name: cdktf-app
-    namespace: flux-system
+    namespace: dev

@@ -58,19 +58,6 @@
           }
         }
       }
-    },
-    "kubernetes_namespace": {
-      "namespace_dev": {
-        "//": {
-          "metadata": {
-            "path": "app/namespace_dev",
-            "uniqueId": "namespace_dev"
-          }
-        },
-        "metadata": {
-          "name": "dev"
-        }
-      }
     }
   },
   "terraform": {
