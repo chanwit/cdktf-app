@@ -5,17 +5,14 @@
       "stackName": "app",
       "version": "0.12.0"
     },
-    "outputs": {
-    }
+    "outputs": {}
   },
   "provider": {
     "helm": [
-      {
-      }
+      {}
     ],
     "kubernetes": [
-      {
-      }
+      {}
     ]
   },
   "resource": {
@@ -29,6 +26,7 @@
         },
         "chart": "nginx-ingress-controller",
         "name": "nginx-ingress-controller",
+        "namespace": "dev",
         "repository": "https://charts.bitnami.com/bitnami",
         "set": [
           {
@@ -86,11 +84,6 @@
     }
   },
   "terraform": {
-    "backend": {
-      "local": {
-        "path": "/home/chanwit/Dropbox/projects/tofu/app/terraform.app.tfstate"
-      }
-    },
     "required_providers": {
       "helm": {
         "source": "helm",
