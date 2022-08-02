@@ -1,0 +1,96 @@
+{
+  "//": {
+    "metadata": {
+      "backend": "local",
+      "overrides": {
+        "stack": [
+          "terraform"
+        ]
+      },
+      "stackName": "app",
+      "version": "0.12.0"
+    },
+    "outputs": {
+    }
+  },
+  "provider": {
+    "kubernetes": [
+      {
+      }
+    ]
+  },
+  "resource": {
+    "kubernetes_deployment": {
+      "deployment_myapp": {
+        "//": {
+          "metadata": {
+            "path": "app/deployment_myapp",
+            "uniqueId": "deployment_myapp"
+          }
+        },
+        "metadata": {
+          "labels": {
+            "app": "myapp",
+            "component": "frontend",
+            "environment": "dev"
+          },
+          "name": "myapp",
+          "namespace": "dev"
+        },
+        "spec": {
+          "replicas": "1",
+          "selector": {
+            "match_labels": {
+              "app": "myapp",
+              "component": "frontend",
+              "environment": "dev"
+            }
+          },
+          "template": {
+            "metadata": {
+              "labels": {
+                "app": "myapp",
+                "component": "frontend",
+                "environment": "dev"
+              }
+            },
+            "spec": {
+              "container": [
+                {
+                  "image": "nginx:latest",
+                  "name": "frontend"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "kubernetes_namespace": {
+      "namespace_dev": {
+        "//": {
+          "metadata": {
+            "path": "app/namespace_dev",
+            "uniqueId": "namespace_dev"
+          }
+        },
+        "metadata": {
+          "name": "dev"
+        }
+      }
+    }
+  },
+  "terraform": {
+    "backend": {
+      "kubernetes": {
+      },
+      "local": null
+    },
+    "required_providers": {
+      "kubernetes": {
+        "source": "kubernetes",
+        "version": "2.12.1"
+      }
+    }
+  }
+}
