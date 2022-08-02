@@ -5,14 +5,39 @@
       "stackName": "app",
       "version": "0.12.0"
     },
-    "outputs": {}
+    "outputs": {
+    }
   },
   "provider": {
+    "helm": [
+      {
+      }
+    ],
     "kubernetes": [
-      {}
+      {
+      }
     ]
   },
   "resource": {
+    "helm_release": {
+      "nginx_ingress": {
+        "//": {
+          "metadata": {
+            "path": "app/nginx_ingress",
+            "uniqueId": "nginx_ingress"
+          }
+        },
+        "chart": "nginx-ingress-controller",
+        "name": "nginx-ingress-controller",
+        "repository": "https://charts.bitnami.com/bitnami",
+        "set": [
+          {
+            "name": "service.type",
+            "value": "ClusterIP"
+          }
+        ]
+      }
+    },
     "kubernetes_deployment": {
       "deployment_myapp": {
         "//": {
@@ -61,7 +86,16 @@
     }
   },
   "terraform": {
+    "backend": {
+      "local": {
+        "path": "/home/chanwit/Dropbox/projects/tofu/app/terraform.app.tfstate"
+      }
+    },
     "required_providers": {
+      "helm": {
+        "source": "helm",
+        "version": "2.6.0"
+      },
       "kubernetes": {
         "source": "kubernetes",
         "version": "2.12.1"
