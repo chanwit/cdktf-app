@@ -8,6 +8,14 @@
       "synthesizedStackPath": "stacks/app/cdk.tf.json",
       "annotations": [],
       "dependencies": []
+    },
+    "bootstrap": {
+      "name": "bootstrap",
+      "constructPath": "bootstrap",
+      "workingDirectory": "stacks/bootstrap",
+      "synthesizedStackPath": "stacks/bootstrap/cdk.tf.json",
+      "annotations": [],
+      "dependencies": []
     }
   }
 }

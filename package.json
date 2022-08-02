@@ -9,7 +9,7 @@
     "get": "cdktf get",
     "build": "tsc",
     "synth": "cdktf synth && yq -i 'del(.terraform.backend)' cdktf.out/stacks/app/cdk.tf.json -o json",
-    "bootstrap": "yq -P '.resource.kubernetes_manifest.*.manifest | split_doc' cdktf.out/stacks/app/cdk.tf.json | kubectl apply -f -",
+    "bootstrap": "yq -P '.resource.kubernetes_manifest.*.manifest | split_doc' cdktf.out/stacks/bootstrap/cdk.tf.json | kubectl apply -f -",
     "compile": "tsc --pretty",
     "watch": "tsc -w",
     "test": "jest",

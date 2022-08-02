@@ -1,0 +1,83 @@
+{
+  "//": {
+    "metadata": {
+      "backend": "local",
+      "stackName": "bootstrap",
+      "version": "0.12.0"
+    },
+    "outputs": {
+    }
+  },
+  "provider": {
+    "kubernetes": [
+      {
+      }
+    ]
+  },
+  "resource": {
+    "kubernetes_manifest": {
+      "app_tf": {
+        "//": {
+          "metadata": {
+            "path": "bootstrap/app_tf",
+            "uniqueId": "app_tf"
+          }
+        },
+        "manifest": {
+          "apiVersion": "infra.contrib.fluxcd.io/v1alpha1",
+          "kind": "Terraform",
+          "metadata": {
+            "name": "app-tf",
+            "namespace": "dev"
+          },
+          "spec": {
+            "approvePlan": "auto",
+            "interval": "1m",
+            "path": "./cdktf.out/stacks/app/",
+            "sourceRef": {
+              "kind": "GitRepository",
+              "name": "cdktf-app",
+              "namespace": "dev"
+            }
+          }
+        }
+      },
+      "cdktf_app": {
+        "//": {
+          "metadata": {
+            "path": "bootstrap/cdktf_app",
+            "uniqueId": "cdktf_app"
+          }
+        },
+        "manifest": {
+          "apiVersion": "source.toolkit.fluxcd.io/v1beta2",
+          "kind": "GitRepository",
+          "metadata": {
+            "name": "cdktf-app",
+            "namespace": "dev"
+          },
+          "spec": {
+            "interval": "30s",
+            "ref": {
+              "branch": "main"
+            },
+            "url": "https://github.com/chanwit/cdktf-app"
+          }
+        }
+      }
+    }
+  },
+  "terraform": {
+    "backend": {
+      "local": {
+        "path": "/home/chanwit/Dropbox/projects/tofu/app/terraform.bootstrap.tfstate"
+      }
+    },
+    "required_providers": {
+      "kubernetes": {
+        "source": "kubernetes",
+        "version": "2.12.1"
+      }
+    }
+  }
+}
