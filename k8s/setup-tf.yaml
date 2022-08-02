@@ -1,0 +1,24 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: cdktf-app
+  namespace: flux-system
+spec:
+  interval: 30s
+  url: https://github.com/chanwit/cdktf-app
+  ref:
+    branch: main
+---
+apiVersion: infra.contrib.fluxcd.io/v1alpha1
+kind: Terraform
+metadata:
+  name: app-tf
+  namespace: flux-system
+spec:
+  path: ./cdktf.out/stacks/app/
+  interval: 1m
+  sourceRef:
+    kind: GitRepository
+    name: cdktf-app
+    namespace: flux-system
