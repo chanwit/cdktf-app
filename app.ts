@@ -54,11 +54,11 @@ export class AppStack extends TerraformStack {
 	  },
 	})
 
-	new helm.Release(this, 'nginx_ingress', {
-		name: "nginx-ingress-controller",
+	new helm.Release(this, 'nginx', {
+		name: "nginx",
 		namespace: "dev",
 		repository: "https://charts.bitnami.com/bitnami",
-		chart: "nginx-ingress-controller",
+		chart: "nginx",
 		set: [
 			{
 				name: "service.type",

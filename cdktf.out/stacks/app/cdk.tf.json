@@ -17,15 +17,15 @@
   },
   "resource": {
     "helm_release": {
-      "nginx_ingress": {
+      "nginx": {
         "//": {
           "metadata": {
-            "path": "app/nginx_ingress",
-            "uniqueId": "nginx_ingress"
+            "path": "app/nginx",
+            "uniqueId": "nginx"
           }
         },
-        "chart": "nginx-ingress-controller",
-        "name": "nginx-ingress-controller",
+        "chart": "nginx",
+        "name": "nginx",
         "namespace": "dev",
         "repository": "https://charts.bitnami.com/bitnami",
         "set": [
