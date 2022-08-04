@@ -7,65 +7,65 @@ import * as helm from '@cdktf/provider-helm'
 export class AppStack extends TerraformStack {
 
   constructor(scope: Construct, name: string) {
-		super(scope, name);
+    super(scope, name);
 
-		new kubernetes.KubernetesProvider(this, 'k8s', {
-		})
+    new kubernetes.KubernetesProvider(this, 'k8s', {
+    })
 
-		new helm.HelmProvider(this, 'helm', {
-		})
+    new helm.HelmProvider(this, 'helm', {
+    })
 
-		new kubernetes.Deployment(this, 'deployment_myapp', {
-		  metadata: {
-			labels: {
-			  app: 'myapp',
-			  component: 'frontend',
-			  environment: 'dev',
-			},
-			name: 'myapp',
-			namespace: 'dev',
-		  },
-		  spec: {
-			replicas: '2',
-			selector: {
-			  matchLabels: {
-				app: 'myapp',
-				component: 'frontend',
-				environment: 'dev',
-			  },
-			},
-			template: {
-			  metadata: {
-				labels: {
-				  app: 'myapp',
-				  component: 'frontend',
-				  environment: 'dev',
-				},
-			  },
-			  spec: {
-				container: [
-				  {
-					image: 'nginx:latest',
-					name: 'frontend',
-				  },
-				],
-			  },
-			},
-		  },
-		})
+    new kubernetes.Deployment(this, 'deployment_myapp', {
+      metadata: {
+      labels: {
+        app: 'myapp',
+        component: 'frontend',
+        environment: 'dev',
+      },
+      name: 'myapp',
+      namespace: 'dev',
+      },
+      spec: {
+      replicas: '2',
+      selector: {
+        matchLabels: {
+        app: 'myapp',
+        component: 'frontend',
+        environment: 'dev',
+        },
+      },
+      template: {
+        metadata: {
+        labels: {
+          app: 'myapp',
+          component: 'frontend',
+          environment: 'dev',
+        },
+        },
+        spec: {
+        container: [
+          {
+          image: 'nginx:latest',
+          name: 'frontend',
+          },
+        ],
+        },
+      },
+      },
+    })
 
-		new helm.Release(this, 'nginx', {
-			name: "nginx",
-			namespace: "dev",
-			repository: "https://charts.bitnami.com/bitnami",
-			chart: "nginx",
-			set: [
-				{
-					name: "service.type",
-					value: "ClusterIP",
-				}
-			],
-		})
+    new helm.Release(this, 'nginx', {
+      name: "nginx",
+      namespace: "dev",
+      repository: "https://charts.bitnami.com/bitnami",
+      chart: "nginx",
+      set: [
+        {
+          name: "service.type",
+          value: "ClusterIP",
+        }
+      ],
+    })
 
   }
 
