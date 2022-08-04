@@ -57,7 +57,7 @@
             "namespace": "dev"
           },
           "spec": {
-            "interval": "30s",
+            "interval": "1m",
             "ref": {
               "branch": "main"
             },
