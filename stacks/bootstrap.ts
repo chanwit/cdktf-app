@@ -11,15 +11,17 @@ export class BootstrapStack extends TerraformStack {
     new kubernetes.KubernetesProvider(this, 'k8s', {
     })
 
+    const namespace = 'dev'
+
     new kubernetes.Manifest(this, 'cdktf_app',{ manifest: {
       apiVersion: 'source.toolkit.fluxcd.io/v1beta2',
       kind: 'GitRepository',
       metadata: {
         name: 'cdktf-app',
-        namespace: 'dev',
+        namespace: namespace,
       },
       spec: {
-        interval: '30s',
+        interval: '1m',
         url: 'https://github.com/chanwit/cdktf-app',
         ref: {
           branch: 'main',
@@ -32,7 +34,7 @@ export class BootstrapStack extends TerraformStack {
       kind: 'Terraform',
       metadata: {
         name: 'app-tf',
-        namespace: 'dev',
+        namespace: namespace,
       },
       spec: {
         path: './cdktf.out/stacks/app/',
@@ -41,7 +43,7 @@ export class BootstrapStack extends TerraformStack {
         sourceRef: {
           kind: 'GitRepository',
           name: 'cdktf-app',
-          namespace: 'dev',
+          namespace: namespace,
         },
       },
     }})
